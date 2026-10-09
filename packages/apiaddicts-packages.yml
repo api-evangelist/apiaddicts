@@ -1,0 +1,74 @@
+name: API Addicts Packages
+generated: '2026-10-09'
+method: searched
+source:
+- https://registry.npmjs.org/-/v1/search?text=apiaddicts
+- https://search.maven.org/solrsearch/select?q=g:org.apiaddicts*
+note: First-party open source API tooling (Spectral rulesets, converters, code generators, SonarQube plugins). These are tools, not client SDKs for a hosted API. Versions and dates read from registry metadata on 2026-10-09. PyPI has no package named apiaddicts (404).
+packages:
+- name: '@apiaddicts/asyncapi-style-guide-spectral'
+  registry: npm
+  url: https://www.npmjs.com/package/@apiaddicts/asyncapi-style-guide-spectral
+  language: JavaScript
+  official: true
+  version: 1.1.0
+  published: '2026-09-21'
+  repository: https://github.com/apiaddicts/apiaddicts-asyncapi-style-guide-spectral
+- name: api-quality-spectral-ruleset
+  registry: npm
+  url: https://www.npmjs.com/package/api-quality-spectral-ruleset
+  language: JavaScript
+  official: true
+  version: 1.6.0
+  published: '2026-09-28'
+  repository: https://github.com/apiaddicts/apquality-spectral
+- name: '@apiaddicts/openapi2insomnia'
+  registry: npm
+  url: https://www.npmjs.com/package/@apiaddicts/openapi2insomnia
+  language: JavaScript
+  official: true
+  version: 1.0.1
+  published: '2026-05-13'
+  repository: https://github.com/apiaddicts/openapi2insomnia
+  bin: o2i
+- name: openapi2postman
+  registry: npm
+  url: https://www.npmjs.com/package/openapi2postman
+  language: JavaScript
+  official: true
+  version: 2.4.3
+  published: '2026-09-10'
+  bin: o2p
+  note: Published by npm user 'apiaddict' (same publisher as the scoped @apiaddicts packages); npm metadata names no repository, matching repo is https://github.com/apiaddicts/openapi2postman.
+- name: openapi-example-aggregator
+  registry: npm
+  url: https://www.npmjs.com/package/openapi-example-aggregator
+  language: JavaScript
+  official: true
+  version: 1.2.1
+  published: '2025-03-28'
+  bin: oea
+  note: Published by npm user 'apiaddict'; npm metadata names no repository.
+- name: org.apiaddicts.apitools.apigen:apigen
+  registry: maven
+  url: https://central.sonatype.com/artifact/org.apiaddicts.apitools.apigen/apigen
+  language: Java
+  official: true
+  version: 1.2.2
+  published: '2025-06-25'
+  note: Same group also publishes generator-core, generator-rest, archetype-core, archetype-core-persistence, archetype-parent-spring-boot at 1.2.2.
+- name: org.apiaddicts.apitools.dosonarapi:sonar-openapi-plugin
+  registry: maven
+  url: https://central.sonatype.com/artifact/org.apiaddicts.apitools.dosonarapi/sonar-openapi-plugin
+  language: Java
+  official: true
+  version: 1.1.1
+  published: '2024-06-28'
+  note: Group also publishes openapi-checks, openapi-front-end, dosonarapi, sonaropenapi-rules-community (1.2.1, 2025-05-19).
+- name: org.apiaddicts.apitools.dosonarapi:sonar-asyncapi-plugin
+  registry: maven
+  url: https://central.sonatype.com/artifact/org.apiaddicts.apitools.dosonarapi/sonar-asyncapi-plugin
+  language: Java
+  official: true
+  version: 1.0.1
+  published: '2024-08-28'

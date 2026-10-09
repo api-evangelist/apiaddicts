@@ -1,0 +1,133 @@
+# harvested from https://github.com/apiaddicts/asyncapi-spectral-rules/blob/fa725d1e61717a5ba2eb14851cce051088a37191/.spectralrc.yaml on 2026-10-09 — a Spectral ruleset published in the provider's own GitHub repository (apiaddicts/asyncapi-spectral-rules); found by GitHub code search, fetched verbatim
+x-method: harvested
+x-stamped: 2026-10-09
+x-source-url: https://github.com/apiaddicts/asyncapi-spectral-rules/blob/fa725d1e61717a5ba2eb14851cce051088a37191/.spectralrc.yaml
+# Spectral ruleset for AsyncAPI SonarQube Rules validation
+extends: spectral:asyncapi
+rules:
+  # AAR001: Servers should use secure protocols
+  aar001-mandatory-https-protocol:
+    description: Servers should use secure protocols (https, wss, amqps, etc.)
+    message: Server uses insecure protocol '{{protocol}}'. Use https, wss, amqps, mqtt+tls or secure protocols instead.
+    severity: error
+    given: $.servers[*]
+    then:
+      field: protocol
+      function: enumeration
+      functionOptions:
+        values:
+          - https
+          - wss
+          - amqps
+          - mqtt+tls
+          - secure
+
+  # AAR008: Servers must be defined
+  aar008-defined-server:
+    description: Servers must be defined in the AsyncAPI specification
+    message: Servers are not defined. At least one server must be configured.
+    severity: error
+    given: $
+    then:
+      function: truthy
+      field: servers
+
+  # AAR018: Security schemes must be defined
+  aar018-security-schemas:
+    description: Security schemes should be defined for authentication
+    message: No security schemes defined. Define security schemes for secure communication.
+    severity: warn
+    given: $
+    then:
+      function: truthy
+      field: components.securitySchemes
+
+  # AAR009: Operations should declare tags
+  aar009-declared-tag:
+    description: Operations should declare tags for categorization
+    message: Operation does not declare any tags. Add tags for better organization.
+    severity: warn
+    given: $.operations[*]
+    then:
+      function: truthy
+      field: tags
+
+  # AAR010: Tags should be documented
+  aar010-documented-tag:
+    description: Tags should have descriptions
+    message: Tag is not documented. Provide a description for the tag.
+    severity: info
+    given: $.tags[*]
+    then:
+      function: truthy
+      field: description
+
+  # AAR011: License should be defined
+  aar011-defined-license:
+    description: License information should be provided
+    message: License is not defined. Add license information to info object.
+    severity: warn
+    given: $.info
+    then:
+      function: truthy
+      field: license
+
+  # AAR012: Operations should have operationId
+  aar012-declared-operation-id:
+    description: Operations should declare unique operationId
+    message: Operation does not have operationId. Define a unique operationId.
+    severity: warn
+    given: $.operations[*]
+    then:
+      function: truthy
+      field: operationId
+
+  # AAR015: Contact information should be defined
+  aar015-undefined-contact:
+    description: Contact information should be provided
+    message: Contact information is not defined. Add contact details to info object.
+    severity: warn
+    given: $.info
+    then:
+      function: truthy
+      field: contact
+
+  # AAR021: Operations should have summary
+  aar021-provide-operation-summary:
+    description: Operations should provide a summary
+    message: Operation does not have a summary. Add a brief summary.
+    severity: warn
+    given: $.operations[*]
+    then:
+      function: truthy
+      field: summary
+
+  # AAR024: Message payload should be validated
+  aar024-message-validation:
+    description: Message payloads should have schema validation
+    message: Message payload does not have schema validation. Define a schema.
+    severity: warn
+    given: $.channels[*].messages[*]
+    then:
+      function: truthy
+      field: payload
+
+  # AAR029: Messages should have description
+  aar029-mandatory-description:
+    description: Message payloads should be described
+    message: Message does not have a description. Provide clear description of the message.
+    severity: warn
+    given: $.channels[*].messages[*]
+    then:
+      function: truthy
+      field: description
+
+  # AAR031: Messages should provide examples
+  aar031-message-examples:
+    description: Messages should include examples
+    message: Message does not provide examples. Add example payload for clarity.
+    severity: info
+    given: $.channels[*].messages[*]
+    then:
+      function: truthy
+      field: examples

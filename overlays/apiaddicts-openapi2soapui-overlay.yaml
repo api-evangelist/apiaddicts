@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the openapi2soapui API
+  version: 1.0.0
+  x-generated: '2026-10-09'
+  x-method: generated
+extends: ../openapi/_original/apiaddicts-openapi2soapui-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-provider: apiaddicts
+    contact:
+      name: API Addicts
+      url: https://github.com/apiaddicts/openapi2soapui
+- target: $.paths['/soap-ui-projects'].post
+  update:
+    operationId: createSoapUiProject
+    x-agent-hint: Send a base64-encoded OpenAPI v2 or v3 spec in the ProyectSoapUI body; returns 201 with the SoapUI project as application/xml.
+      Errors are returned as application/json (400, 404, 406, 415, 500).
+    x-note: The original contract declares the request media type as 'aplication/json' (sic); clients should send application/json.

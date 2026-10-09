@@ -1,0 +1,12 @@
+name: API Addicts Plans
+generated: '2026-10-09'
+method: none
+audience: unclear
+pricing_basis: none
+published: false
+plan_count: 0
+delivery:
+  mode: self-hosted
+  evidence: The two APIs in this repo are open source projects (github.com/apiaddicts/openapi2soapui, Apigen) run self-hosted via Docker / Spring Boot; no hosted base URL is published.
+note: API Addicts is a non-profit foundation; no API pricing or plans page was found. Its site sells training courses and certification, which are not API pricing.
+plans: []

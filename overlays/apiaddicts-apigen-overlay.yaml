@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Apigen API
+  version: 1.0.0
+  x-generated: '2026-10-09'
+  x-method: generated
+extends: ../openapi/_original/apiaddicts-apigen-openapi.yml
+actions:
+- target: $.info
+  update:
+    description: REST API of the API Addicts open source Apigen Spring Boot generator (generator-rest module). Self-hosted; no public hosted base
+      URL is published.
+    x-provider: apiaddicts
+    contact:
+      name: API Addicts
+      url: https://github.com/apiaddicts/apigen.springboot
+- target: $.paths['/generator/file'].post
+  update:
+    x-agent-hint: Upload an OpenAPI or configuration file and receive a generated Spring Boot project archive.
+- target: $.paths['/generator/config'].post
+  update:
+    x-agent-hint: Send an Apigen JSON configuration (components.schemas.config) to generate a Spring Boot project.
+- target: $.paths['/configuration/file'].post
+  update:
+    x-agent-hint: Upload a file to get back an Apigen configuration (JSON) that can be passed to generateFromConfig.

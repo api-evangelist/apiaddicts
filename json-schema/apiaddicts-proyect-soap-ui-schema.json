@@ -1,0 +1,411 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apiaddicts/main/json-schema/apiaddicts-proyect-soap-ui-schema.json",
+  "title": "ProyectSoapUI",
+  "x-generated": "2026-10-09",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/apiaddicts-openapi2soapui-openapi.yml#/components/schemas/ProyectSoapUI",
+  "required": [
+    "apiName",
+    "openApiSpec"
+  ],
+  "type": "object",
+  "properties": {
+    "apiName": {
+      "type": "string",
+      "description": "Name of SoapUI proyect"
+    },
+    "oAuth2Profiles": {
+      "$ref": "#/$defs/OAuth2Profiles"
+    },
+    "openApiSpec": {
+      "type": "string",
+      "format": "byte",
+      "description": "Base-64 encoded OpenAPI Spec"
+    },
+    "testCaseNames": {
+      "type": "array",
+      "description": "For each name, an extra {METHOD}_Case{name} test case identical to CaseOkAllProperties is generated. Empty/unset (default) generates none.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "headers": {
+      "$ref": "#/$defs/Headers"
+    },
+    "customAuthorizationsFile": {
+      "$ref": "#/$defs/CustomAuthorizationsFile"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "description": "If true, only GET and OPTIONS test cases are generated. POST, PUT, PATCH and DELETE are excluded."
+    },
+    "minimalEndpoints": {
+      "type": "boolean",
+      "description": "If false (default), generates one {METHOD}_CaseErrorRequired{Field} test case per required body property (recursing into nested required objects) and per required query parameter. If true, collapses this to at most one such test case (the first required body property found, or the first required query parameter if the operation has no JSON body)."
+    },
+    "microcksHeaders": {
+      "type": "boolean",
+      "description": "If true, adds an X-Microcks-Response-Name header to each request, in addition to any custom headers. Its value is the name of the response example defined in the OpenAPI spec (first 2xx response, falling back to the \"default\" response), or \"default\" if none is defined. For the CaseErrorStatusCode{StatusCode}/CaseErrorRequired{Field} test cases, the header is resolved against that specific status's (or \"default\") response. If a custom header named X-Microcks-Response-Name is supplied, its value is preserved in every test case (both Ok* and Error*)."
+    },
+    "generateOneOfAnyOf": {
+      "type": "boolean",
+      "description": "If true, resolves oneOf/anyOf schemas to their first candidate schema when generating the example request body. When false (the default), a oneOf/anyOf property is rendered as a single empty value instead of being expanded into subfields. allOf schemas are always merged into a single object regardless of this flag."
+    },
+    "validateSchema": {
+      "type": "boolean",
+      "description": "If true (default), every generated test case's status-code assertion is joined by a response-schema assertion (when the corresponding response documents a JSON schema). If false, only the status-code assertion is added — no schema assertion is generated for any test case."
+    },
+    "schemaIsInline": {
+      "type": "boolean",
+      "description": "If false (default), the response JSON Schema used by a test case's schema assertion is generated as a SoapUI Project Property and read from the script at runtime via a \"context.expand('${#Project#...}')\" call. If true, the schema is embedded directly as a literal in the assertion script instead."
+    },
+    "schemaPrettyPrint": {
+      "type": "boolean",
+      "description": "If true (default), the response JSON Schema used by a test case's schema assertion is pretty-printed (indented). If false, it is serialized compactly with no extra whitespace."
+    },
+    "isInline": {
+      "type": "boolean",
+      "description": "If false (default), JSON request body example values are generated as SoapUI Project Properties and referenced from the body via a \"${#Project#...}\" token. If true, literal example values are embedded directly in the body instead. Query parameter values are always embedded literally, regardless of this flag."
+    },
+    "hasScopes": {
+      "type": "boolean",
+      "description": "If true, for each generated method, an extra {METHOD}_CaseOkScope{profileName} test case is generated per configured oAuth2Profiles entry beyond the first, each wired to that profile's own OAuth 2.0 authentication, independent of the default request (which always uses only the first oAuth2Profiles entry). No-op when oAuth2Profiles is empty, not provided, or has only one entry."
+    },
+    "applicationToken": {
+      "type": "boolean",
+      "description": "Only relevant when hasScopes is true. If also true, for each generated method, an extra {METHOD}_CaseOkApplicationToken{profileName} test case is generated per configured oAuth2Profiles entry whose grantType is CLIENT_CREDENTIALS (an application-only token, with no user — including the first entry), wired to that profile's own OAuth 2.0 authentication — separate from the hasScopes scope variant test cases. No-op when hasScopes is false, or when no CLIENT_CREDENTIALS-grant profile is configured."
+    },
+    "numberOfScopes": {
+      "type": "integer",
+      "description": "Only relevant when hasScopes is true. Total number of test cases wired to a profile-based scope credential — counting the default request and any extra scope-variant test cases — using the first numberOfScopes configured oAuth2Profiles entries in configured order. Values below 1 (unset, 0, or negative) are treated as 1 — no extra test case is generated, since the default request alone already covers the first configured profile. Values at or above the number of configured oAuth2Profiles entries use all of them. Does not affect applicationToken test cases."
+    },
+    "serverPattern": {
+      "type": "string",
+      "description": "Pattern to select the OpenAPI server used as endpoint. Wrap the substring with % (e.g. %dev%). If no server matches, or if serverPattern is omitted entirely, the first declared server is used."
+    }
+  },
+  "$defs": {
+    "CustomAuthorizationRequest": {
+      "required": [
+        "name",
+        "method",
+        "endpoint"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the authorization request; used to build the Resource, Method and Test Case names"
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method of the authorization request"
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "Full URL the authorization request is sent to"
+        },
+        "headers": {
+          "$ref": "#/$defs/Headers"
+        },
+        "mediaType": {
+          "type": "string",
+          "description": "Content-Type of the authorization request body"
+        },
+        "body": {
+          "type": "string",
+          "description": "Raw body content of the authorization request"
+        }
+      }
+    },
+    "CustomAuthorizationsFile": {
+      "type": "array",
+      "description": "List of custom authorization requests, prepended as a dedicated \"authorizations\" Test Suite before the per-endpoint Test Suites",
+      "items": {
+        "$ref": "#/$defs/CustomAuthorizationRequest"
+      }
+    },
+    "ExampleValues": {
+      "type": "object",
+      "properties": {
+        "string": {
+          "type": "string"
+        },
+        "number": {
+          "type": "number"
+        },
+        "boolean": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "dateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "array": {
+          "type": "string",
+          "description": "Literal value used verbatim for array-typed properties/parameters (e.g. a JSON array literal such as \"[1,2,3]\")."
+        },
+        "object": {
+          "type": "string",
+          "description": "Literal value used verbatim for object-typed properties/parameters (e.g. a JSON object literal such as {\"id\":1})."
+        }
+      }
+    },
+    "Examples": {
+      "type": "object",
+      "description": "Custom example values used when generating request body properties and query-parameter values. Any field not provided falls back to the tool's internal default. \"successful\" values are used for valid request bodies and valid query-parameter values. \"wrong\" values are used for the negative CaseErrorRequired{Field} cases: when any \"wrong\" value is configured, the target required field is sent with an invalid value taken from \"wrong\" (e.g. wrong.dateTime) instead of being omitted (body) or left empty (query parameter); when \"wrong\" is not configured, those cases keep the default behavior (omit the required body field / empty the required query parameter). These values only substitute scalar leaf values (string/number/boolean/date/dateTime and array/object literals); they do not expand or otherwise affect oneOf/anyOf/allOf composition — use generateOneOfAnyOf to control oneOf/anyOf expansion. String formats without a dedicated key (email, uuid, password, byte, binary) use the \"string\" value in request bodies; query parameters additionally emit built-in realistic samples for common formats (e.g. user@example.com for email), which take precedence over \"string\".",
+      "properties": {
+        "successful": {
+          "$ref": "#/$defs/ExampleValues"
+        },
+        "wrong": {
+          "$ref": "#/$defs/ExampleValues"
+        }
+      }
+    },
+    "Headers": {
+      "type": "array",
+      "description": "List of optionals headers. This apply in all resources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key of header param"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of header param"
+          }
+        }
+      }
+    },
+    "OAuth2Profile": {
+      "type": "object",
+      "properties": {
+        "profileName": {
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "^[A-Za-z0-9]*$"
+        },
+        "grantType": {
+          "type": "string",
+          "description": "Grant type",
+          "enum": [
+            "AUTHORIZATION_CODE",
+            "CLIENT_CREDENTIALS",
+            "IMPLICIT",
+            "RESOURCE_OWNER_PASSWORD_CREDENTIALS"
+          ]
+        },
+        "clientId": {
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "^[A-Za-z0-9]*$"
+        },
+        "scope": {
+          "type": "string",
+          "description": "It will be a comma separated text string with the different scopes"
+        },
+        "accessTokenPosition": {
+          "type": "string",
+          "description": "Access Token Position",
+          "enum": [
+            "HEADER",
+            "BODY",
+            "QUERY"
+          ]
+        }
+      },
+      "required": [
+        "profileName",
+        "grantType",
+        "clientId"
+      ]
+    },
+    "OAuth2ProfileAuthorizationCode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/OAuth2Profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "clientSecret": {
+              "type": "string",
+              "maxLength": 100,
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            "accessTokenURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            },
+            "authorizationURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            },
+            "redirectURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            }
+          },
+          "required": [
+            "clientSecret",
+            "accessTokenURI",
+            "authorizationURI",
+            "redirectURI"
+          ]
+        }
+      ]
+    },
+    "OAuth2ProfileClientCredentials": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/OAuth2Profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "clientSecret": {
+              "type": "string",
+              "maxLength": 100,
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            "accessTokenURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            }
+          },
+          "required": [
+            "clientSecret",
+            "accessTokenURI"
+          ]
+        }
+      ]
+    },
+    "OAuth2ProfileImplicit": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/OAuth2Profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "authorizationURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            },
+            "redirectURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            }
+          },
+          "required": [
+            "authorizationURI",
+            "redirectURI"
+          ]
+        }
+      ]
+    },
+    "OAuth2ProfileResourceOwnerPasswordCredentials": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/OAuth2Profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "clientSecret": {
+              "type": "string",
+              "maxLength": 100,
+              "pattern": "^[A-Za-z0-9]*$"
+            },
+            "accessTokenURI": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2083,
+              "pattern": "^(https?)://"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "clientSecret",
+            "accessTokenURI",
+            "username",
+            "password"
+          ]
+        }
+      ]
+    },
+    "OAuth2ProfileToGetToken": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/OAuth2ProfileAuthorizationCode"
+        },
+        {
+          "$ref": "#/$defs/OAuth2ProfileClientCredentials"
+        },
+        {
+          "$ref": "#/$defs/OAuth2ProfileResourceOwnerPasswordCredentials"
+        },
+        {
+          "$ref": "#/$defs/OAuth2ProfileImplicit"
+        }
+      ]
+    },
+    "OAuth2ProfileWithExistingToken": {
+      "type": "object",
+      "properties": {
+        "profileName": {
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "^[A-Za-z0-9]*$"
+        },
+        "accessToken": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9]*$"
+        }
+      },
+      "required": [
+        "profileName"
+      ]
+    },
+    "OAuth2Profiles": {
+      "type": "array",
+      "description": "List with the configurations of the oAuth 2.0 authentication profiles",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/OAuth2ProfileWithExistingToken"
+          },
+          {
+            "$ref": "#/$defs/OAuth2ProfileToGetToken"
+          }
+        ]
+      }
+    }
+  }
+}

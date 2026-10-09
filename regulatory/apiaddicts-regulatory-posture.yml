@@ -1,0 +1,80 @@
+generated: '2026-10-09'
+method: searched
+source:
+- https://www.apiaddicts.org/politica-de-privacidad/
+- https://www.apiaddicts.org/terminos-de-uso/
+language: es
+pages_read:
+- url: https://www.apiaddicts.org/politica-de-privacidad/
+  http_status: 200
+  fetched: '2026-10-09'
+- url: https://www.apiaddicts.org/terminos-de-uso/
+  http_status: 200
+  fetched: '2026-10-09'
+  note: Terms of use (Spanish) contain no data-protection, residency, retention or AI clauses; nothing recorded from them.
+signals:
+  data_subject_request:
+    url: https://www.apiaddicts.org/politica-de-privacidad/
+    section: 'Derechos de los afectados'
+    rights_named: [access, rectification, erasure, restriction of processing, objection, portability]
+    evidence:
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'API ADDICTS facilitará a los afectados el ejercicio de los derechos de acceso, rectificación, supresión, limitación del tratamiento, oposición y portabilidad, estableciendo a tal efecto los procedimientos internos, y en particular los modelos para su ejercicio que resulten necesarios y oportunos, los cuales deberán satisfacer, al menos, los requisitos legales aplicables en cada caso.'
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'Acceder, rectificar y suprimir sus datos, así como otros derechos, como se explica en la información adicional.'
+    note: >-
+      The Fundación commits to GDPR-style data-subject rights (access, rectification, erasure, restriction,
+      objection, portability). No request channel (email/form) or response time is stated on this page; the
+      "información adicional" is available only "solicitando copia a nuestro personal".
+  data_residency:
+    url: https://www.apiaddicts.org/politica-de-privacidad/
+    section: '5. Información básica sobre protección de datos (Destinatarios)'
+    evidence:
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'Destinatarios: Sus datos no serán cedidos a terceros, salvo consentimiento expreso por su parte. No se transferirán datos personales fuera de la UE.'
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'Todo tratamiento de datos de carácter personal sujeto a normativa de la Unión Europea que implique una transferencia de datos fuera del Espacio Económico Europeo deberá llevarse a cabo con estricto cumplimiento de los requisitos establecidos en la ley aplicable.'
+    note: >-
+      A plain statement that personal data will not be transferred outside the EU, plus a general
+      principle governing any transfer outside the EEA. This is a privacy-policy commitment for the
+      foundation's community/events data, not a selectable data-residency option for an API product.
+  data_retention:
+    url: https://www.apiaddicts.org/politica-de-privacidad/
+    section: 'Limitación del plazo de conservación'
+    evidence:
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'Los datos serán mantenidos de forma que se permita la identificación de los interesados durante no más tiempo del necesario para los fines del tratamiento.'
+    note: >-
+      Only the GDPR storage-limitation principle is stated; no concrete retention periods are published.
+  subprocessors:
+    url: https://www.apiaddicts.org/politica-de-privacidad/
+    section: 'Contratación de proveedores con acceso a datos'
+    evidence:
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'Sólo se elegirán para su contratación a proveedores que ofrezcan garantías suficientes para aplicar medidas técnicas y de seguridad apropiadas en el tratamiento de datos. Con estos terceros se documentará el debido Acuerdo a este respecto.'
+    note: >-
+      The policy covers processors ("Encargados del tratamiento") and requires a documented agreement with
+      each, but no list of subprocessors is published.
+  incident_notification:
+    url: https://www.apiaddicts.org/politica-de-privacidad/
+    section: null
+    evidence:
+    - source: https://www.apiaddicts.org/politica-de-privacidad/
+      http_status: 200
+      fetched: '2026-10-09'
+      quote: 'Informar a API ADDICTS, tan pronto tenga conocimiento, de desviaciones de lo establecido en esta Política, en particular de “Violaciones de seguridad de los datos personales ”, utilizando para ello el formato establecido al efecto.'
+    note: >-
+      This is an INTERNAL duty: staff and processors must report personal-data breaches to API Addicts. The
+      page makes no commitment to notify affected individuals or customers, and states no timeframe.

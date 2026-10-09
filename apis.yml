@@ -1,23 +1,177 @@
 aid: apiaddicts
-name: API Addicts
-description: 'API Addicts is a company surfaced via the API Evangelist harvest backlog (source: spectral-ruleset-web)
-  and added to the network as a stub for full-pipeline profiling.'
+
+name: apIAddicts
+
+description: Fundación apIAddicts (API Addicts) is a Spain-based non-profit foundation and community of API and AI practitioners that has been
+  connecting people and companies around APIs, MCP and AI since 2013. It runs the apIAddictsDay events (Spain and LATAM editions) and webinars,
+  offers Spanish-language API training courses and official certification (API design, architecture, security, testing, APIOps, MCP), and publishes
+  open source API tooling on GitHub, including Spectral style-guide rulesets for OpenAPI and AsyncAPI.
+
 url: https://raw.githubusercontent.com/api-evangelist/apiaddicts/refs/heads/main/apis.yml
+
+image: https://avatars.githubusercontent.com/u/31730093?v=4
+
 x-type: company
+
 x-source: harvest:spectral-ruleset-web
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-09 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-09'
+
 modified: '2026-10-09'
+
 tags:
 - Company
-apis: []
+- Non-Profit
+- Community
+- API Training
+- Certification
+- Events
+- Open Source
+- API Governance
+- Spectral
+- MCP
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/apiaddicts-agentic-access.yml
+- type: Spectral
+  url: rules/apiaddicts-rules.yml
+- type: Spectral
+  url: rules/apiaddicts-asyncapi-spectral-rules-spectral-rules.yml
+- type: Spectral
+  url: rules/apiaddicts-apiaddicts-style-guide-spectral-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/apiaddicts-context.jsonld
+- type: Vocabulary
+  url: vocabulary/apiaddicts-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/apiaddicts-data-model.yml
+- type: Conventions
+  url: conventions/apiaddicts-conventions.yml
+- type: ErrorCatalog
+  url: errors/apiaddicts-problem-types.yml
+- type: Conformance
+  url: conformance/apiaddicts-conformance.yml
+- type: Overlay
+  url: overlays/apiaddicts-apigen-overlay.yaml
+- type: Hosts
+  url: hosts/apiaddicts-hosts.yml
+- type: Vendors
+  url: vendors/apiaddicts-vendors.yml
+- type: SDKs
+  url: packages/apiaddicts-packages.yml
+- type: Packages
+  url: packages/apiaddicts-packages.yml
+- type: DomainSecurity
+  url: security/apiaddicts-domain-security.yml
 - type: Website
+  url: https://www.apiaddicts.org/
+- type: GitHubOrganization
+  url: https://github.com/apiaddicts
+- type: Blog
+  url: https://www.apiaddicts.org/category/tecnologia/
+- type: News
+  url: https://www.apiaddicts.org/category/news/
+- type: RSSFeed
+  url: https://www.apiaddicts.org/feed/
+- type: About
+  url: https://www.apiaddicts.org/fundacion-apiaddicts/
+- type: Support
+  url: https://www.apiaddicts.org/contacto/
+- type: OpenSource
+  url: https://www.apiaddicts.org/apitools/
+- type: TermsOfService
+  url: https://www.apiaddicts.org/terminos-de-uso/
+- type: PrivacyPolicy
+  url: https://www.apiaddicts.org/politica-de-privacidad/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/apiaddicts/
+- type: YouTube
+  url: https://www.youtube.com/channel/UCepaRmZBCmbdU4QqNhSV5jQ
+- type: Discord
+  url: https://discord.com/invite/ZdbGqMBYy8
+- type: SpectralRules
+  url: https://github.com/apiaddicts/apiaddicts-style-guide-spectral/blob/fba927d25373406a42f384c3905b28dc9d9ad758/apq-spectral.yaml
+- type: SpectralRules
+  url: https://github.com/apiaddicts/asyncapi-spectral-rules/blob/fa725d1e61717a5ba2eb14851cce051088a37191/.spectralrc.yaml
+- type: GitHubRepository
   url: https://github.com/apiaddicts/apiaddicts-style-guide-spectral
+
+apis:
+- aid: apiaddicts:apiaddicts-configuration-api
+  name: apIAddicts Configuration API
+  description: The Configuration API from apIAddicts — 1 operation(s) for configuration.
+  humanURL: https://github.com/apiaddicts/openapi2soapui
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/apiaddicts-configuration-api-openapi.yml
+  - type: GitHubRepository
+    url: https://github.com/apiaddicts/openapi2soapui
+  - type: JSONSchema
+    url: json-schema/apiaddicts-proyect-soap-ui-schema.json
+  - type: GitHubRepository
+    url: https://github.com/apiaddicts/apigen.springboot
+  - type: JSONSchema
+    url: json-schema/apiaddicts-config-schema.json
+- aid: apiaddicts:apiaddicts-generator-api
+  name: apIAddicts Generator API
+  description: The Generator API from apIAddicts — 2 operation(s) for generator.
+  humanURL: https://github.com/apiaddicts/openapi2soapui
+  tags:
+  - Generator
+  properties:
+  - type: OpenAPI
+    url: openapi/apiaddicts-generator-api-openapi.yml
+  - type: GitHubRepository
+    url: https://github.com/apiaddicts/openapi2soapui
+  - type: JSONSchema
+    url: json-schema/apiaddicts-proyect-soap-ui-schema.json
+  - type: GitHubRepository
+    url: https://github.com/apiaddicts/apigen.springboot
+  - type: JSONSchema
+    url: json-schema/apiaddicts-config-schema.json
+- aid: apiaddicts:apiaddicts-soapui-api
+  name: apIAddicts Soap UI API
+  description: Swagger to SoapUI conversion
+  humanURL: https://github.com/apiaddicts/openapi2soapui
+  tags:
+  - SoapUI
+  properties:
+  - type: OpenAPI
+    url: openapi/apiaddicts-soapui-api-openapi.yml
+  - type: GitHubRepository
+    url: https://github.com/apiaddicts/openapi2soapui
+  - type: JSONSchema
+    url: json-schema/apiaddicts-proyect-soap-ui-schema.json
+  - type: GitHubRepository
+    url: https://github.com/apiaddicts/apigen.springboot
+  - type: JSONSchema
+    url: json-schema/apiaddicts-config-schema.json
+x-enrichment:
+  date: '2026-10-09'
+  status: enriched
+  artifacts_added: 35
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=anthropic,regulatory=anthropic
+x-coverage:
+  state: covered
+  reason: identity-verified
+  detail: 'Enriched 2026-10-09: website and identity verified (verified) from the provider''s own pages; probed URLs below.'
+  evidence:
+  - url: https://raw.githubusercontent.com/api-evangelist/apiaddicts/refs/heads/main/apis.yml
+    status: null

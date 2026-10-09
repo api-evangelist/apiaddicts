@@ -1,0 +1,21 @@
+name: API Addicts Conventions
+generated: '2026-10-09'
+method: derived
+source:
+- openapi/apiaddicts-openapi2soapui-openapi.yml
+- openapi/apiaddicts-apigen-openapi.yml
+note: Derived from the two self-hosted open source contracts only; no API documentation site publishes cross-cutting conventions.
+auth:
+  style: none declared
+  note: Neither contract declares securitySchemes (OAuth2Profile* schemas in openapi2soapui describe auth to put INTO generated SoapUI projects, not auth for this API).
+idempotency:
+  coverage: none
+  note: No Idempotency-Key header or replay protection in either contract. All 4 operations are POSTs that generate artifacts (SoapUI project, Spring Boot project, configuration) from an input definition.
+pagination:
+  style: none
+versioning:
+  style: path
+  note: openapi2soapui uses server path /api-openapi-to-soapui/v1; Apigen declares no server.
+reversibility:
+  status: na
+  note: The write surface consists of stateless generator POSTs (POST /soap-ui-projects, POST /generator/file, POST /generator/config, POST /configuration/file) that return generated output; no persisted resources are created per the contracts, so there is nothing to reverse. No reversal operations are documented.

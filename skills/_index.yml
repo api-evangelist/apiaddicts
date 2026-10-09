@@ -1,0 +1,32 @@
+generated: '2026-10-09'
+method: generated
+source:
+- https://github.com/apiaddicts/apigen-skills
+- https://github.com/apiaddicts/openapi2soapui-skills
+skills:
+- name: apiaddicts-generate-springboot-project
+  path: skills/apiaddicts-generate-springboot-project.md
+  api: openapi/apiaddicts-apigen-openapi.yml
+  operations: [configurationFromFile, generateFromConfig, generateFromFile]
+  origin: generated
+published:
+- name: apigen-api
+  path: skills/published/apigen-skills/apigen-api.SKILL.md
+  url: https://github.com/apiaddicts/apigen-skills/blob/main/skills/apigen-api/SKILL.md
+  note: verbatim; targets the .NET ApiGen REST API (POST /generator/file)
+- name: apigen-cli
+  path: skills/published/apigen-skills/apigen-cli.SKILL.md
+  url: https://github.com/apiaddicts/apigen-skills/blob/main/skills/apigen-cli/SKILL.md
+- name: apigen-openapi-check
+  path: skills/published/apigen-skills/apigen-openapi-check.SKILL.md
+  url: https://github.com/apiaddicts/apigen-skills/blob/main/skills/apigen-openapi-check/SKILL.md
+- name: apigen-openapi-enrich
+  path: skills/published/apigen-skills/apigen-openapi-enrich.SKILL.md
+  url: https://github.com/apiaddicts/apigen-skills/blob/main/skills/apigen-openapi-enrich/SKILL.md
+- name: generar-proyecto-soapui
+  path: skills/published/openapi2soapui-skills/generar-proyecto-soapui.SKILL.md
+  url: https://github.com/apiaddicts/openapi2soapui-skills/blob/main/skills/generar-proyecto-soapui/SKILL.md
+  note: verbatim; calls POST /api-openapi-to-soapui/v1/soap-ui-projects (no operationId in the contract)
+- name: ejecutar-proyecto-soapui
+  path: skills/published/openapi2soapui-skills/ejecutar-proyecto-soapui.SKILL.md
+  url: https://github.com/apiaddicts/openapi2soapui-skills/blob/main/skills/ejecutar-proyecto-soapui/SKILL.md

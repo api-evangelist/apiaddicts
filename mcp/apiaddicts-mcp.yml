@@ -1,0 +1,50 @@
+type: MCPServer
+name: API Addicts MCP (candidate)
+generated: '2026-10-09'
+method: derived
+status: candidate
+source:
+- https://api.github.com/orgs/apiaddicts/repos?per_page=100
+- openapi/apiaddicts-apigen-openapi.yml
+- openapi/apiaddicts-openapi2soapui-openapi.yml
+description: >-
+  API Addicts does not publish an MCP server. The apiaddicts GitHub org (fetched 2026-10-09) holds MCP-related
+  repos -- mcp-scan ("Security scanner for AI agents, MCP servers and agent skills") and mcps-style-guide (a
+  Spectral style guide for MCP definitions) -- but neither is an MCP server. https://www.apiaddicts.org/.well-known/mcp.json
+  answered HTTP 429 (rate limited), not a document. The tools below are a CANDIDATE list derived from the two
+  self-hosted OpenAPI contracts saved in openapi/; nobody runs them.
+deployment:
+  mode: none
+  auth: unknown
+  verified: derived
+related_repos:
+- url: https://github.com/apiaddicts/mcp-scan
+  note: security scanner for MCP servers and agent skills; not an MCP server
+- url: https://github.com/apiaddicts/mcps-style-guide
+  note: Spectral ruleset for MCP definitions; not an MCP server
+tools:
+- name: generate_project_from_file
+  description: Create a Spring Boot project from an OpenAPI/config file (Apigen generator-rest).
+  operationId: generateFromFile
+  api: openapi/apiaddicts-apigen-openapi.yml
+  method: POST
+  path: /generator/file
+- name: generate_project_from_config
+  description: Create a Spring Boot project from a JSON Apigen config.
+  operationId: generateFromConfig
+  api: openapi/apiaddicts-apigen-openapi.yml
+  method: POST
+  path: /generator/config
+- name: generate_configuration_from_file
+  description: Generate an Apigen configuration from an uploaded file.
+  operationId: configurationFromFile
+  api: openapi/apiaddicts-apigen-openapi.yml
+  method: POST
+  path: /configuration/file
+- name: create_soapui_project
+  description: Generate a SoapUI project (XML) from a base64-encoded OpenAPI v2/v3 spec.
+  operationId: null
+  note: the contract declares no operationId for this operation; overlays/apiaddicts-openapi2soapui-overlay.yaml proposes createSoapUiProject
+  api: openapi/apiaddicts-openapi2soapui-openapi.yml
+  method: POST
+  path: /soap-ui-projects

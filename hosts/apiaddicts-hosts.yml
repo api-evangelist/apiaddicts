@@ -1,0 +1,86 @@
+generated: '2026-10-09'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 6
+  own: 2
+  other_domain: 0
+  platform: 4
+  roles:
+  - api
+  - other
+  - source
+  - website
+hosts:
+- host: api.apiaddicts.org
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: apiaddicts.org
+  role: api
+  relation: own
+- host: discord.com
+  found_by:
+  - pointer
+  types:
+  - Discord
+  serves: []
+  registrable_domain: discord.com
+  role: other
+  relation: platform
+- host: github.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - GitHubOrganization
+  - SpectralRules
+  - GitHubRepository
+  serves:
+  - docs
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: www.apiaddicts.org
+  found_by:
+  - pointer
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Website
+  - Blog
+  - News
+  - RSSFeed
+  - About
+  - Support
+  - OpenSource
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - cdn
+  vendor: cloudflare
+  registrable_domain: apiaddicts.org
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.youtube.com
+  found_by:
+  - pointer
+  types:
+  - YouTube
+  serves: []
+  registrable_domain: youtube.com
+  role: other
+  relation: platform

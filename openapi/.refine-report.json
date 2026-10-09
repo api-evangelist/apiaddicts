@@ -1,0 +1,36 @@
+{
+  "provider": "apiaddicts",
+  "sources": [
+    "_original/apigen-springboot-api.yaml",
+    "_original/openapi2soapui-api.yaml",
+    "apiaddicts-apigen-openapi.yml",
+    "apiaddicts-openapi2soapui-openapi.yml"
+  ],
+  "outputs": [
+    "apiaddicts-configuration-api-openapi.yml",
+    "apiaddicts-generator-api-openapi.yml",
+    "apiaddicts-soapui-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/apiaddicts-apigen-openapi.yml",
+    "archived openapi/apiaddicts-openapi2soapui-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apigen-springboot-api.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apigen-springboot-api.yaml: declared missing tag: Configuration",
+    "apigen-springboot-api.yaml: declared missing tag: Generator",
+    "openapi2soapui-api.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiaddicts-apigen-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apiaddicts-apigen-openapi.yml: declared missing tag: Configuration",
+    "apiaddicts-apigen-openapi.yml: declared missing tag: Generator",
+    "apiaddicts-openapi2soapui-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "tag 'Configuration' spans 2 source specs (apigen-springboot-api.yaml, apiaddicts-apigen-openapi.yml): per-path servers applied",
+    "tag 'Generator' spans 2 source specs (apigen-springboot-api.yaml, apiaddicts-apigen-openapi.yml): per-path servers applied",
+    "tag 'SoapUI' spans 2 source specs (openapi2soapui-api.yaml, apiaddicts-openapi2soapui-openapi.yml): per-path servers applied",
+    "apis.yml register: written (+3 apis, 3 total)"
+  ],
+  "skipped": []
+}

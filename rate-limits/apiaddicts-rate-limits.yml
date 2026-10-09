@@ -1,0 +1,6 @@
+name: API Addicts Rate Limits
+generated: '2026-10-09'
+method: none
+limit_count: 0
+note: No rate limits are documented. The APIs are self-hosted open source tools (openapi2soapui, Apigen) with no hosted endpoint, so any limit would be set by the operator.
+limits: []
