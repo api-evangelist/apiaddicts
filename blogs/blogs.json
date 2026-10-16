@@ -1,0 +1,14 @@
+{
+  "repo": "apiaddicts",
+  "feeds": [
+    {
+      "source": "https://www.apiaddicts.org/category/tecnologia/",
+      "feed_url": "https://www.apiaddicts.org/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-10-10T13:15:00Z"
+}
