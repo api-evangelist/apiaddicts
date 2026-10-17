@@ -1,8 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Apiaddicts Soap UI API
+  title: Swagger to Soap UI API
+  description: 'API to generate a SoapUI project from an OpenAPI Specification (fka Swagger Specification)
+
+
+    Given an OpenAPI Specification, either v2 or v3, a SoapUI project is generated with a __request__ and a __test suite__ for each resource operation.
+
+
+    The response is the content of the SoapUI project in XML format to save as file and import into the SoapUI application.'
   version: 1.0.0
-  description: 'Operations tagged SoapUI across 2 of this provider''s published API definitions: openapi2soapui-api.yaml, apiaddicts-openapi2soapui-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: /api-openapi-to-soapui/v1
 tags:
@@ -410,10 +416,21 @@ paths:
                     message: Unexpected error
       operationId: postSoapUiProjects
       x-operation-id-source: derived
-    servers:
-    - url: /api-openapi-to-soapui/v1
 components:
   schemas:
+    OAuth2ProfileToGetToken:
+      oneOf:
+      - $ref: '#/components/schemas/OAuth2ProfileAuthorizationCode'
+      - $ref: '#/components/schemas/OAuth2ProfileClientCredentials'
+      - $ref: '#/components/schemas/OAuth2ProfileResourceOwnerPasswordCredentials'
+      - $ref: '#/components/schemas/OAuth2ProfileImplicit'
+      discriminator:
+        propertyName: grantType
+        mapping:
+          AUTHORIZATION_CODE: '#/components/schemas/OAuth2ProfileAuthorizationCode'
+          CLIENT_CREDENTIALS: '#/components/schemas/OAuth2ProfileClientCredentials'
+          IMPLICIT: '#/components/schemas/OAuth2ProfileResourceOwnerPasswordCredentials'
+          RESOURCE_OWNER_PASSWORD_CREDENTIALS: '#/components/schemas/OAuth2ProfileImplicit'
     OAuth2ProfileAuthorizationCode:
       allOf:
       - $ref: '#/components/schemas/OAuth2Profile'
@@ -447,6 +464,143 @@ components:
         - accessTokenURI
         - authorizationURI
         - redirectURI
+    OAuth2ProfileImplicit:
+      allOf:
+      - $ref: '#/components/schemas/OAuth2Profile'
+      - type: object
+        properties:
+          authorizationURI:
+            type: string
+            format: uri
+            maxLength: 2083
+            pattern: ^(https?)://
+            example: http://api.cloudappi.net/auth
+          redirectURI:
+            type: string
+            format: uri
+            maxLength: 2083
+            pattern: ^(https?)://
+            example: http://api.cloudappi.net/callback
+        required:
+        - authorizationURI
+        - redirectURI
+    OAuth2ProfileWithExistingToken:
+      type: object
+      properties:
+        profileName:
+          type: string
+          maxLength: 100
+          pattern: ^[A-Za-z0-9]*$
+          example: dev
+        accessToken:
+          type: string
+          pattern: ^[A-Za-z0-9]*$
+          example: Ty3vo6cGkJu6DoK1GZUSNcgOj5rQ
+      required:
+      - profileName
+    ExampleValues:
+      type: object
+      properties:
+        string:
+          type: string
+          example: goodstring
+        number:
+          type: number
+          example: 6
+        boolean:
+          type: boolean
+          example: true
+        date:
+          type: string
+          format: date
+          example: '2020-01-01'
+        dateTime:
+          type: string
+          format: date-time
+          example: '2020-01-01T23:59:59'
+        array:
+          type: string
+          description: Literal value used verbatim for array-typed properties/parameters (e.g. a JSON array literal such as "[1,2,3]").
+          example: '[1,2,3]'
+        object:
+          type: string
+          description: Literal value used verbatim for object-typed properties/parameters (e.g. a JSON object literal such as {"id":1}).
+          example: '{"id":1}'
+    OAuth2ProfileClientCredentials:
+      allOf:
+      - $ref: '#/components/schemas/OAuth2Profile'
+      - type: object
+        properties:
+          clientSecret:
+            type: string
+            maxLength: 100
+            pattern: ^[A-Za-z0-9]*$
+            example: a2354akdjfasdkfj
+          accessTokenURI:
+            type: string
+            format: uri
+            maxLength: 2083
+            pattern: ^(https?)://
+            example: http://api.cloudappi.net/token
+        required:
+        - clientSecret
+        - accessTokenURI
+    OAuth2ProfileResourceOwnerPasswordCredentials:
+      allOf:
+      - $ref: '#/components/schemas/OAuth2Profile'
+      - type: object
+        properties:
+          clientSecret:
+            type: string
+            maxLength: 100
+            pattern: ^[A-Za-z0-9]*$
+            example: a2354akdjfasdkfj
+          accessTokenURI:
+            type: string
+            format: uri
+            maxLength: 2083
+            pattern: ^(https?)://
+            example: http://api.cloudappi.net/token
+          username:
+            type: string
+            example: username
+          password:
+            type: string
+            example: password
+        required:
+        - clientSecret
+        - accessTokenURI
+        - username
+        - password
+    CustomAuthorizationRequest:
+      required:
+      - name
+      - method
+      - endpoint
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the authorization request; used to build the Resource, Method and Test Case names
+          example: Application token
+        method:
+          type: string
+          description: HTTP method of the authorization request
+          example: POST
+        endpoint:
+          type: string
+          description: Full URL the authorization request is sent to
+          example: https://api.example.com/security/token
+        headers:
+          $ref: '#/components/schemas/Headers'
+        mediaType:
+          type: string
+          description: Content-Type of the authorization request body
+          example: application/x-www-form-urlencoded
+        body:
+          type: string
+          description: Raw body content of the authorization request
+          example: grant_type=client_credentials&client_id={{client_id}}&client_secret={{client_secret}}
     Headers:
       type: array
       description: List of optionals headers. This apply in all resources
@@ -461,11 +615,6 @@ components:
             type: string
             description: Value of header param
             example: ewogIm5hbWUiIDogIm5vbWJyZSIsCiAiZGlyIiA6ICJkaXIiCn0
-    CustomAuthorizationsFile:
-      type: array
-      description: List of custom authorization requests, prepended as a dedicated "authorizations" Test Suite before the per-endpoint Test Suites
-      items:
-        $ref: '#/components/schemas/CustomAuthorizationRequest'
     OAuth2Profile:
       type: object
       properties:
@@ -506,89 +655,6 @@ components:
       - clientId
       discriminator:
         propertyName: grantType
-    OAuth2ProfileImplicit:
-      allOf:
-      - $ref: '#/components/schemas/OAuth2Profile'
-      - type: object
-        properties:
-          authorizationURI:
-            type: string
-            format: uri
-            maxLength: 2083
-            pattern: ^(https?)://
-            example: http://api.cloudappi.net/auth
-          redirectURI:
-            type: string
-            format: uri
-            maxLength: 2083
-            pattern: ^(https?)://
-            example: http://api.cloudappi.net/callback
-        required:
-        - authorizationURI
-        - redirectURI
-    OAuth2ProfileResourceOwnerPasswordCredentials:
-      allOf:
-      - $ref: '#/components/schemas/OAuth2Profile'
-      - type: object
-        properties:
-          clientSecret:
-            type: string
-            maxLength: 100
-            pattern: ^[A-Za-z0-9]*$
-            example: a2354akdjfasdkfj
-          accessTokenURI:
-            type: string
-            format: uri
-            maxLength: 2083
-            pattern: ^(https?)://
-            example: http://api.cloudappi.net/token
-          username:
-            type: string
-            example: username
-          password:
-            type: string
-            example: password
-        required:
-        - clientSecret
-        - accessTokenURI
-        - username
-        - password
-    OAuth2Profiles:
-      type: array
-      description: List with the configurations of the oAuth 2.0 authentication profiles
-      items:
-        oneOf:
-        - $ref: '#/components/schemas/OAuth2ProfileWithExistingToken'
-        - $ref: '#/components/schemas/OAuth2ProfileToGetToken'
-    CustomAuthorizationRequest:
-      required:
-      - name
-      - method
-      - endpoint
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the authorization request; used to build the Resource, Method and Test Case names
-          example: Application token
-        method:
-          type: string
-          description: HTTP method of the authorization request
-          example: POST
-        endpoint:
-          type: string
-          description: Full URL the authorization request is sent to
-          example: https://api.example.com/security/token
-        headers:
-          $ref: '#/components/schemas/Headers'
-        mediaType:
-          type: string
-          description: Content-Type of the authorization request body
-          example: application/x-www-form-urlencoded
-        body:
-          type: string
-          description: Raw body content of the authorization request
-          example: grant_type=client_credentials&client_id={{client_id}}&client_secret={{client_secret}}
     ProyectSoapUI:
       required:
       - apiName
@@ -666,25 +732,18 @@ components:
           example: '%dev%'
         examples:
           $ref: '#/components/schemas/Examples'
-    OAuth2ProfileClientCredentials:
-      allOf:
-      - $ref: '#/components/schemas/OAuth2Profile'
-      - type: object
-        properties:
-          clientSecret:
-            type: string
-            maxLength: 100
-            pattern: ^[A-Za-z0-9]*$
-            example: a2354akdjfasdkfj
-          accessTokenURI:
-            type: string
-            format: uri
-            maxLength: 2083
-            pattern: ^(https?)://
-            example: http://api.cloudappi.net/token
-        required:
-        - clientSecret
-        - accessTokenURI
+    OAuth2Profiles:
+      type: array
+      description: List with the configurations of the oAuth 2.0 authentication profiles
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/OAuth2ProfileWithExistingToken'
+        - $ref: '#/components/schemas/OAuth2ProfileToGetToken'
+    CustomAuthorizationsFile:
+      type: array
+      description: List of custom authorization requests, prepended as a dedicated "authorizations" Test Suite before the per-endpoint Test Suites
+      items:
+        $ref: '#/components/schemas/CustomAuthorizationRequest'
     Examples:
       type: object
       description: 'Custom example values used when generating request body properties and query-parameter values. Any field not provided falls back to the tool''s internal default. "successful" values are used for valid request bodies and valid query-parameter values. "wrong" values are used for the negative CaseErrorRequired{Field} cases: when any "wrong" value is configured, the target required field is sent with an invalid value taken from "wrong" (e.g. wrong.dateTime) instead of being omitted (body) or left empty (query parameter); when "wrong" is not configured, those cases keep the default behavior (omit the required body field / empty the required query parameter). These values only substitute scalar leaf values (string/number/boolean/date/dateTime and array/object literals); they do not expand or otherwise affect oneOf/anyOf/allOf composition — use generateOneOfAnyOf to control oneOf/anyOf expansion. String formats without a dedicated key (email, uuid, password, byte, binary) use the "string" value in request bodies; query parameters additionally emit built-in realistic samples for common formats (e.g. user@example.com for email), which take precedence over "string".'
@@ -693,61 +752,3 @@ components:
           $ref: '#/components/schemas/ExampleValues'
         wrong:
           $ref: '#/components/schemas/ExampleValues'
-    OAuth2ProfileWithExistingToken:
-      type: object
-      properties:
-        profileName:
-          type: string
-          maxLength: 100
-          pattern: ^[A-Za-z0-9]*$
-          example: dev
-        accessToken:
-          type: string
-          pattern: ^[A-Za-z0-9]*$
-          example: Ty3vo6cGkJu6DoK1GZUSNcgOj5rQ
-      required:
-      - profileName
-    OAuth2ProfileToGetToken:
-      oneOf:
-      - $ref: '#/components/schemas/OAuth2ProfileAuthorizationCode'
-      - $ref: '#/components/schemas/OAuth2ProfileClientCredentials'
-      - $ref: '#/components/schemas/OAuth2ProfileResourceOwnerPasswordCredentials'
-      - $ref: '#/components/schemas/OAuth2ProfileImplicit'
-      discriminator:
-        propertyName: grantType
-        mapping:
-          AUTHORIZATION_CODE: '#/components/schemas/OAuth2ProfileAuthorizationCode'
-          CLIENT_CREDENTIALS: '#/components/schemas/OAuth2ProfileClientCredentials'
-          IMPLICIT: '#/components/schemas/OAuth2ProfileResourceOwnerPasswordCredentials'
-          RESOURCE_OWNER_PASSWORD_CREDENTIALS: '#/components/schemas/OAuth2ProfileImplicit'
-    ExampleValues:
-      type: object
-      properties:
-        string:
-          type: string
-          example: goodstring
-        number:
-          type: number
-          example: 6
-        boolean:
-          type: boolean
-          example: true
-        date:
-          type: string
-          format: date
-          example: '2020-01-01'
-        dateTime:
-          type: string
-          format: date-time
-          example: '2020-01-01T23:59:59'
-        array:
-          type: string
-          description: Literal value used verbatim for array-typed properties/parameters (e.g. a JSON array literal such as "[1,2,3]").
-          example: '[1,2,3]'
-        object:
-          type: string
-          description: Literal value used verbatim for object-typed properties/parameters (e.g. a JSON object literal such as {"id":1}).
-          example: '{"id":1}'
-x-refined-from:
-- openapi2soapui-api.yaml
-- apiaddicts-openapi2soapui-openapi.yml
