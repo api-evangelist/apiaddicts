@@ -1,4 +1,4 @@
-# API Addicts
+# apIAddicts
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,5 +64,142 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-API Addicts is a company surfaced via the API Evangelist harvest backlog (source: spectral-ruleset-web) and added to the network as a stub for full-pipeline profiling.
-- https://github.com/apiaddicts/apiaddicts-style-guide-spectral
+Fundación apIAddicts (API Addicts) is a Spain-based non-profit foundation and community of API and AI practitioners that has been connecting people and companies around APIs, MCP and AI since 2013. It runs the apIAddictsDay events (Spain and LATAM editions) and webinars, offers Spanish-language API training courses and official certification (API design, architecture, security, testing, APIOps, MCP), and publishes open source API tooling on GitHub, including Spectral style-guide rulesets for OpenAPI and AsyncAPI.
+
+**Areas:** Company · Non-Profit · Community · API Training · Certification · Event · Open Source · API Governance · Spectral · MCP
+
+## apIAddicts on APIs.io
+
+Everything profiled for apIAddicts is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apiaddicts/](https://apis.io/providers/apiaddicts/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [apIAddicts Configuration API](https://apis.io/apis/apiaddicts/apiaddicts-configuration-api/) — The Configuration API from apIAddicts — 1 operation(s) for configuration.
+- [apIAddicts Generator API](https://apis.io/apis/apiaddicts/apiaddicts-generator-api/) — The Generator API from apIAddicts — 2 operation(s) for generator.
+- [apIAddicts Soap UI API](https://apis.io/apis/apiaddicts/apiaddicts-soapui-api/) — Swagger to SoapUI conversion
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [API Addicts MCP (candidate)](https://apis.io/servers/apiaddicts/api-addicts-mcp-candidate/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Apiaddicts Agentic Access](https://apis.io/agentic-access/apiaddicts/apiaddicts-agentic-access/)
+
+#### JSON Schema (2)
+
+The data models the API reads and writes.
+
+- [config](https://apis.io/schemas/apiaddicts/apiaddicts-config/)
+- [ProyectSoapUI](https://apis.io/schemas/apiaddicts/apiaddicts-proyect-soap-ui/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apiaddicts Context](https://apis.io/jsonld/apiaddicts/apiaddicts-context/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Apiaddicts Apigen Overlay](https://apis.io/overlays/apiaddicts/apiaddicts-apigen-overlay/)
+- [Apiaddicts Openapi2Soapui Overlay](https://apis.io/overlays/apiaddicts/apiaddicts-openapi2soapui-overlay/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [apIAddicts — apiaddicts style guide spectral rules](https://apis.io/rules/apiaddicts/apiaddicts-apiaddicts-style-guide-spectral-spectral-rules/)
+- [apIAddicts — asyncapi spectral rules rules](https://apis.io/rules/apiaddicts/apiaddicts-asyncapi-spectral-rules-spectral-rules/)
+- [apIAddicts API Rules](https://apis.io/rules/apiaddicts/apiaddicts-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apiaddicts Domain Security](https://apis.io/security/apiaddicts/apiaddicts-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apiaddicts Plans Pricing](https://apis.io/plans/apiaddicts/apiaddicts-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apiaddicts Rate Limits](https://apis.io/rate-limits/apiaddicts/apiaddicts-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.apiaddicts.org/)
+- [Support](https://www.apiaddicts.org/contacto/)
+- [Blog](https://www.apiaddicts.org/category/tecnologia/)
+- [Terms of service](https://www.apiaddicts.org/terminos-de-uso/)
+- [Privacy policy](https://www.apiaddicts.org/politica-de-privacidad/)
+- [GitHub](https://github.com/apiaddicts)
+
+## API Evangelist rating
+
+**Kin Score 29.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 51.4 |
+| Contract governance | 22.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 16.1 |
+| Access clarity | 21.1 |
+
+**Agent readiness 21.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 18.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apiaddicts/](https://apis.io/providers/apiaddicts/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for apIAddicts: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apiaddicts/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
